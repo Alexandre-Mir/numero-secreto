@@ -1,6 +1,15 @@
 function verificaChute(params) {
   const numero = +chute;
 
+  if (chute == 'game over'){
+    alterarContexto('game-over');
+    document.body.innerHTML = `
+    <h2>Você disse ${chute}!</h2>
+    <h3>O número secreto era ${numeroSecreto}!</h3>
+    <button id="jogar-novamente" class="btn-jogar">Jogar novamente</button>
+    `
+  }
+
   if(chuteForInvalido(numero)) {
     elementoChute.innerHTML += '<div>Valor inválido</div>';
     return
@@ -16,6 +25,22 @@ function verificaChute(params) {
     <h2>Você acertou!</h2>
     <h3>O número secreto era ${numeroSecreto}!</h3>
     <button id="jogar-novamente" class="btn-jogar">Jogar novamente</button>
+
+    <div class="confetti">
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    </div>
     `
   } else if (numero > numeroSecreto) {
     elementoChute.innerHTML += `
@@ -28,6 +53,8 @@ function verificaChute(params) {
   }
   
 }
+
+
 
 function chuteForInvalido(numero) {
   return Number.isNaN(numero);
@@ -44,3 +71,4 @@ document.body.addEventListener('click', e => {
     window.location.reload();
   }
 })
+
